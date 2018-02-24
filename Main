@@ -1,0 +1,39 @@
+FO, "Listeners loaded successfully.");
+        coloritem = new ColorItem(this);
+    }
+    @Override
+    public void onDisable() {
+        saveSpawnLocation();
+        Bukkit.getConsoleSender().sendMessage(ChatColor.GREEN + "Lobby has been disabled correctly.");
+    }
+
+    public SerializableLocation getSpawn() {
+        return spawn;
+    }
+
+    public void setSpawnLocation(Location location) {
+        spawn = new SerializableLocation(location);
+    }
+
+    public void saveSpawnLocation() {
+        getConfig().set("spawn", spawn);
+        saveConfig();
+        reloadConfig();
+    }
+
+    public void registerListeners(Listener... listeners) {
+        for (Listener shit : listeners) {
+            Bukkit.getPluginManager().registerEvents(shit, this);
+        }
+    }
+    private void registerEvents() {
+        Bukkit.getPluginManager().registerEvents(new BlockBreakEvent(), this);
+        Bukkit.getPluginManager().registerEvents(new DropItem(), this);
+        Bukkit.getPluginManager().registerEvents(new ItemPickup(), this);
+        Bukkit.getPluginManager().registerEvents(new PlayerQuitEvent(), this);
+        Bukkit.getPluginManager().registerEvents(new DamageEvent(), this);
+        Bukkit.getPluginManager().registerEvents(new FarmProtect(), this);
+        Bukkit.getPluginManager().registerEvents(new PlayerJoin(this), this);
+        Bukkit.getPluginManager().registerEvents(new EnderPearl(this), this);
+        Bukkit.getPluginManager().registerEvents(new AntiSpawningMob(), this);
+        Bukkit.getPluginManager().registerEvents(new FoodLevel(), this);
