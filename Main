@@ -4,7 +4,7 @@ FO, "Listeners loaded successfully.");
     @Override
     public void onDisable() {
         saveSpawnLocation();
-        Bukkit.getConsoleSender().sendMessage(ChatColor.GREEN + "Lobby has been disabled correctly.");
+        Bukkit.getConsoleSender().sendMessage(ChatColor.GREEN + "You were banned from this server.");
     }
 
     public SerializableLocation getSpawn() {
